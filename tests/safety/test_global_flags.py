@@ -74,30 +74,34 @@ class TestMergeGlobalFlags:
 
 
 class TestGlobalFlagsHelp:
+    # Force wide terminal so Rich doesn't wrap option names off-screen
+    # (Windows CI runner reports very narrow default width).
+    _ENV = {"COLUMNS": "200", "TERM": "dumb"}
+
     def test_help_shows_confirm_flag(self) -> None:
         runner = CliRunner()
-        result = runner.invoke(app, ["--help"])
+        result = runner.invoke(app, ["--help"], env=self._ENV)
         assert result.exit_code == 0
         assert "--confirm" in result.output
 
     def test_help_shows_dry_run_flag(self) -> None:
         runner = CliRunner()
-        result = runner.invoke(app, ["--help"])
+        result = runner.invoke(app, ["--help"], env=self._ENV)
         assert "--dry-run" in result.output
 
     def test_help_shows_allow_fixed_disk_flag(self) -> None:
         runner = CliRunner()
-        result = runner.invoke(app, ["--help"])
+        result = runner.invoke(app, ["--help"], env=self._ENV)
         assert "--allow-fixed-disk" in result.output
 
     def test_help_shows_force_encrypted_flag(self) -> None:
         runner = CliRunner()
-        result = runner.invoke(app, ["--help"])
+        result = runner.invoke(app, ["--help"], env=self._ENV)
         assert "--force-encrypted" in result.output
 
     def test_help_shows_auto_unmount_flag(self) -> None:
         runner = CliRunner()
-        result = runner.invoke(app, ["--help"])
+        result = runner.invoke(app, ["--help"], env=self._ENV)
         assert "--auto-unmount" in result.output
 
 

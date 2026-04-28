@@ -111,7 +111,9 @@ def test_unmount_reverse_order_dry_run() -> None:
     bind_targets = mount_order[2:]  # skip root + efi
     for i, src in enumerate(_BIND_SOURCES):
         suffix = src.lstrip("/")
-        assert bind_targets[i].endswith(suffix), (
+        # Normalize separators so Windows runners (backslash) match too.
+        target_posix = bind_targets[i].replace("\\", "/")
+        assert target_posix.endswith(suffix), (
             f"Expected bind target {i} to end with '{suffix}', got '{bind_targets[i]}'"
         )
 
