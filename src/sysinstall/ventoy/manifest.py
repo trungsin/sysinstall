@@ -21,16 +21,14 @@ _BASE_URL = f"https://github.com/ventoy/Ventoy/releases/download/v{VENTOY_VERSIO
 ARTIFACTS: dict[str, tuple[str, str, str]] = {
     "linux-x64": (
         f"ventoy-{VENTOY_VERSION}-linux.tar.gz",
-        # SHA256 verified against GitHub release assets for 1.1.05
-        # Source: https://github.com/ventoy/Ventoy/releases/tag/v1.1.05
-        # TODO: pin the real SHA256 once release assets are published and verified.
-        _PLACEHOLDER_SHA,
+        # Verified against upstream sha256.txt at
+        # https://github.com/ventoy/Ventoy/releases/download/v1.1.05/sha256.txt
+        "3379c99890359dcff55aab7f7b3286f87c988d1da2fd616e6a9e305fb0a1de9e",
         f"{_BASE_URL}/ventoy-{VENTOY_VERSION}-linux.tar.gz",
     ),
     "windows-x64": (
         f"ventoy-{VENTOY_VERSION}-windows.zip",
-        # TODO: pin the real SHA256 once release assets are published and verified.
-        _PLACEHOLDER_SHA,
+        "3dc1f0a5209c6fa260af9f08951bc4421127b56d4efa3edd2c979af74b1941e5",
         f"{_BASE_URL}/ventoy-{VENTOY_VERSION}-windows.zip",
     ),
 }
