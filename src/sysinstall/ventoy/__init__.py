@@ -51,29 +51,48 @@ def _require_supported_platform() -> None:
 
 
 def _extract_ventoy(archive_path: Path) -> Path:
-    """Extract the Ventoy archive and return the directory containing the runner.
+    """Extract the Ventoy archive and return the actual top-level directory.
 
-    Returns the top-level directory unpacked from the archive.
+    Detects the archive's real top-level name (e.g. ``ventoy-1.1.05/``) instead
+    of guessing from the archive filename — upstream zip names don't always
+    match the inner folder (the Windows zip is ``ventoy-1.1.05-windows.zip``
+    but unpacks to ``ventoy-1.1.05/``).
     """
     import tarfile
     import zipfile
 
-    extract_dir = archive_path.parent / (archive_path.stem.rstrip(".tar"))
-    if extract_dir.exists():
-        log.debug("Ventoy already extracted at %s", extract_dir)
-        return extract_dir
-
     log.info("Extracting %s", archive_path)
     if archive_path.suffix == ".gz" or archive_path.name.endswith(".tar.gz"):
         with tarfile.open(archive_path, "r:gz") as tf:
-            tf.extractall(archive_path.parent)  # noqa: S202
+            top_level = _archive_top_level([m.name for m in tf.getmembers()])
+            extract_dir = archive_path.parent / top_level
+            if not extract_dir.exists():
+                tf.extractall(archive_path.parent)  # noqa: S202
     elif archive_path.suffix == ".zip":
         with zipfile.ZipFile(archive_path) as zf:
-            zf.extractall(archive_path.parent)
+            top_level = _archive_top_level(zf.namelist())
+            extract_dir = archive_path.parent / top_level
+            if not extract_dir.exists():
+                zf.extractall(archive_path.parent)
     else:
         raise RuntimeError(f"Unknown archive format: {archive_path}")
 
+    log.debug("Ventoy extracted at %s", extract_dir)
     return extract_dir
+
+
+def _archive_top_level(names: list[str]) -> str:
+    """Return the single top-level directory name shared by all archive entries.
+
+    Ventoy archives always pack a single root folder; if upstream ever ships
+    a flat archive we fall back to the archive's own parent (caller handles).
+    """
+    tops = {n.split("/", 1)[0] for n in names if n and not n.startswith("/")}
+    if len(tops) != 1:
+        raise RuntimeError(
+            f"Unexpected Ventoy archive layout — expected single top-level dir, got {tops!r}"
+        )
+    return tops.pop()
 
 
 def _find_linux_script(extract_dir: Path) -> Path:

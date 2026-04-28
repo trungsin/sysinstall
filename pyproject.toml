@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sysinstall"
-version = "0.0.1"
+version = "0.0.2"
 description = "Cross-platform CLI for multi-boot USB creation and Windows/Ubuntu dual-boot setup"
 readme = "README.md"
 license = { text = "MIT" }

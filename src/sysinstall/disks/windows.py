@@ -98,7 +98,10 @@ def _build_disk(
     order: int,
 ) -> Disk:
     disk_num = int(raw.get("DiskNumber", order))
-    path = raw.get("Path") or f"\\\\.\\PhysicalDrive{disk_num}"
+    # Always use the canonical PhysicalDriveN form. Get-Disk's "Path" returns
+    # a fragile SCSI symlink that downstream PowerShell cmdlets can't parse
+    # (e.g. unmount-by-DiskNumber).
+    path = f"\\\\.\\PhysicalDrive{disk_num}"
     size_bytes = int(raw.get("Size") or 0)
     model = (raw.get("Model") or raw.get("FriendlyName") or "Unknown").strip()
     serial: str | None = (raw.get("SerialNumber") or "").strip() or None
