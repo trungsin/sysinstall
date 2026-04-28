@@ -1,0 +1,7 @@
+BootCurrent: 0001
+Timeout: 1 seconds
+BootOrder: 0001,0002,0003,0000
+Boot0000  EFI Hard Drive (TS256GSSD230S)	BBS(HD,,0x0)
+Boot0001* ubuntu	HD(1,GPT,3fa8e1a2-8c3d-4f5b-9e6a-1b2c3d4e5f60,0x800,0x100000)/File(\EFI\ubuntu\shimx64.efi)
+Boot0002* Windows Boot Manager	HD(1,GPT,3fa8e1a2-8c3d-4f5b-9e6a-1b2c3d4e5f60,0x800,0x100000)/File(\EFI\Microsoft\Boot\bootmgfw.efi)
+Boot0003* UEFI: PXE IPv4 Intel(R) Ethernet	BBS(Network,,0x0)

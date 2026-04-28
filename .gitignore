@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.venv/
+venv/
+
+# Test/coverage caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Build artifacts
+build/
+dist/
+*.spec~
+
+# OS
+.DS_Store
+*.pem
+
+# Editor
+*.swp
+*.swo
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Repomix output (if used)
+repomix-output.xml
+release-manifest.json
+
+# Claude Code local-only state (rules + skills tracked, runtime state ignored)
+.claude/agent-memory/
+.claude/hooks/.logs/
+.claude/session-state/latest.md
+.claude/session-state/archive/
+.claude/session-state/*.tmp
+.claude/settings.bak.json
+.claude/settings.local.json
+
+# OpenCode backups
+.opencode.backup/
+
+# External study repos
+external/
+
+# Git worktrees
+worktrees/
+
+# Audit logs (sysinstall runtime)
+audit*.jsonl
+audit*.jsonl.*

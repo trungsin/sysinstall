@@ -1,0 +1,104 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sysinstall"
+version = "0.0.1"
+description = "Cross-platform CLI for multi-boot USB creation and Windows/Ubuntu dual-boot setup"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "sysinstall contributors" }]
+requires-python = ">=3.12"
+keywords = ["ventoy", "dual-boot", "usb", "windows", "ubuntu", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Boot",
+    "Topic :: System :: Operating System",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "typer>=0.12",
+    "rich>=13",
+    "psutil>=5.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/USER/sysinstall"
+Repository = "https://github.com/USER/sysinstall"
+Issues = "https://github.com/USER/sysinstall/issues"
+
+[project.scripts]
+sysinstall = "sysinstall.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sysinstall"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "pyinstaller>=6",
+]
+
+[tool.ruff]
+src = ["src"]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+files = ["src/sysinstall/cli", "src/sysinstall/core"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short -q"
+markers = [
+    "smoke: VM smoke test (not run by default)",
+    "integration: Integration test requiring host state",
+    "slow: Slow test",
+]
+
+[tool.coverage.run]
+source = ["src/sysinstall"]
+branch = true
+parallel = true
+
+[tool.coverage.report]
+precision = 2
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "if 0:",
+    "if False:",
+]
+# Coverage thresholds (enforced in CI):
+#   ≥80%: safety/*, disks/identifiers.py, disks/base.py, disks/macos.py,
+#         partition/planner.py, iso/catalog.py
+#   ≥60%: boot/detector.py, boot/efi.py, safety/gates.py, disks/linux.py, disks/windows.py
+#   Reason for the 60% tier: these modules' uncovered branches are platform-conditional
+#   (real /sys/firmware/efi reads, real efibootmgr stdout, encryption-detection subprocesses).
+#   They are exercised by VM smoke tests in tests/smoke/, not by mocked unit tests.
+# Global fail_under disabled; per-module thresholds enforced in .github/workflows/ci.yml
+
+[tool.coverage.html]
+directory = "htmlcov"

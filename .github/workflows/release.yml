@@ -1,0 +1,97 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: sysinstall-windows-x64.exe
+          - os: ubuntu-22.04
+            artifact: sysinstall-linux-x64
+          - os: macos-14
+            artifact: sysinstall-macos-arm64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dev deps
+        run: pip install -e ".[dev]"
+      - name: ruff check
+        run: ruff check src/sysinstall
+      - name: mypy
+        run: mypy --strict src/sysinstall
+      - name: pytest with coverage
+        run: |
+          pytest --cov=src/sysinstall \
+                  --cov-report=xml \
+                  --cov-report=term \
+                  -q
+      - name: Build binary with PyInstaller
+        run: pyinstaller sysinstall.spec
+      - name: Sign Windows binary (conditional)
+        if: runner.os == 'Windows' && env.SIGN_CERT_BASE64 != ''
+        shell: pwsh
+        run: |
+          . .\.github\scripts\sign-windows.ps1
+        env:
+          SIGN_CERT_BASE64: ${{ secrets.SIGN_CERT_BASE64 }}
+          SIGN_CERT_PASSWORD: ${{ secrets.SIGN_CERT_PASSWORD }}
+          SIGN_TIMESTAMP_URL: ${{ secrets.SIGN_TIMESTAMP_URL }}
+      - name: Sign & notarize macOS binary (conditional)
+        if: runner.os == 'macOS' && env.APPLE_ID != ''
+        shell: bash
+        run: |
+          bash ./.github/scripts/sign-and-notarize-macos.sh
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          TEAM_ID: ${{ secrets.TEAM_ID }}
+      - name: Generate SHA256 checksums
+        shell: bash
+        run: |
+          cd dist
+          sha256sum sysinstall* > sha256sum.txt || \
+          shasum -a 256 sysinstall* > sha256sum.txt
+          cat sha256sum.txt
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/
+          retention-days: 5
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Prepare release assets
+        shell: bash
+        run: |
+          mkdir -p release-assets
+          find artifacts -type f \( -name "sysinstall*" -o -name "sha256sum.txt" \) -exec cp {} release-assets/ \;
+          ls -lh release-assets/
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/*
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref, 'rc') || contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

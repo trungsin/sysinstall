@@ -1,0 +1,82 @@
+{
+  "blockdevices": [
+    {
+      "name": "/dev/sda",
+      "path": "/dev/sda",
+      "type": "disk",
+      "size": "512110190592",
+      "model": "Samsung SSD 860",
+      "serial": "S3EVNX0K123456",
+      "tran": "sata",
+      "rm": "0",
+      "rota": "0",
+      "fstype": null,
+      "mountpoint": null,
+      "mountpoints": [null],
+      "label": null,
+      "children": [
+        {
+          "name": "/dev/sda1",
+          "path": "/dev/sda1",
+          "type": "part",
+          "size": "536870912",
+          "fstype": "vfat",
+          "mountpoint": "/boot/efi",
+          "mountpoints": ["/boot/efi"],
+          "label": "EFI",
+          "rm": "0"
+        },
+        {
+          "name": "/dev/sda2",
+          "path": "/dev/sda2",
+          "type": "part",
+          "size": "1073741824",
+          "fstype": "ext4",
+          "mountpoint": "/boot",
+          "mountpoints": ["/boot"],
+          "label": "boot",
+          "rm": "0"
+        },
+        {
+          "name": "/dev/sda3",
+          "path": "/dev/sda3",
+          "type": "part",
+          "size": "510499577856",
+          "fstype": "ext4",
+          "mountpoint": "/",
+          "mountpoints": ["/"],
+          "label": "root",
+          "rm": "0"
+        }
+      ]
+    },
+    {
+      "name": "/dev/sdb",
+      "path": "/dev/sdb",
+      "type": "disk",
+      "size": "32010928128",
+      "model": "SanDisk Ultra",
+      "serial": "AA00112233445566",
+      "tran": "usb",
+      "rm": "1",
+      "rota": "0",
+      "fstype": null,
+      "mountpoint": null,
+      "mountpoints": [null],
+      "label": null,
+      "children": [
+        {
+          "name": "/dev/sdb1",
+          "path": "/dev/sdb1",
+          "type": "part",
+          "size": "32009879552",
+          "fstype": "vfat",
+          "mountpoint": "/media/user/USB",
+          "mountpoints": ["/media/user/USB"],
+          "label": "USB",
+          "rm": "1"
+        }
+      ]
+    }
+  ]
+}

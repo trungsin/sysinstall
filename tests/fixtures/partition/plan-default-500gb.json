@@ -1,0 +1,26 @@
+{
+  "changes": [
+    {
+      "disk": "/dev/sda",
+      "table": "gpt",
+      "partitions": [
+        {
+          "number": 1,
+          "size_bytes": 1048576000,
+          "fstype": "fat32",
+          "label": "BOOT",
+          "bootable": true
+        },
+        {
+          "number": 2,
+          "size_bytes": 499095805952,
+          "fstype": "ext4",
+          "label": "ubuntu"
+        }
+      ]
+    }
+  ],
+  "disk_id": "/dev/sda",
+  "total_size_bytes": 500000000000,
+  "used_size_bytes": 1049623552
+}

@@ -1,0 +1,11 @@
+Ventoy2Disk.sh v1.1.05
+Target Device: /dev/sdb
+
+Format partition ...
+10%
+Creating ventoy partition ...
+50%
+Writing bootloader ...
+75%
+Done: 100%
+Ventoy Install OK.

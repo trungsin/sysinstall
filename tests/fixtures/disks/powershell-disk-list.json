@@ -1,0 +1,102 @@
+{
+  "disks": [
+    {
+      "DiskNumber": 0,
+      "Path": "\\\\.\\PhysicalDrive0",
+      "Model": "Samsung SSD 970 EVO 500GB",
+      "SerialNumber": "S466NX0M123456",
+      "Size": 500107862016,
+      "BusType": "NVMe",
+      "IsBoot": true,
+      "IsSystem": true,
+      "IsReadOnly": false,
+      "PartitionStyle": "GPT",
+      "FirmwareVersion": "2B2QEXM7",
+      "Manufacturer": "Samsung",
+      "NumberOfPartitions": 3
+    },
+    {
+      "DiskNumber": 1,
+      "Path": "\\\\.\\PhysicalDrive1",
+      "Model": "SanDisk Ultra USB 3.0",
+      "SerialNumber": "BB112233445566",
+      "Size": 32010928128,
+      "BusType": "USB",
+      "IsBoot": false,
+      "IsSystem": false,
+      "IsReadOnly": false,
+      "PartitionStyle": "MBR",
+      "FirmwareVersion": "1.00",
+      "Manufacturer": "SanDisk",
+      "NumberOfPartitions": 1
+    }
+  ],
+  "partitions": [
+    {
+      "DiskNumber": 0,
+      "PartitionNumber": 1,
+      "Guid": "{EBD0A0A2-B9E5-4433-87C0-68B6B72699C7}",
+      "DriveLetter": null,
+      "Size": 524288000,
+      "Type": "System",
+      "IsSystem": true,
+      "IsBoot": false,
+      "IsActive": true,
+      "UniqueId": "disk0p1"
+    },
+    {
+      "DiskNumber": 0,
+      "PartitionNumber": 2,
+      "Guid": "{DE94BBA4-06D1-4D40-A16A-BFD50179D6AC}",
+      "DriveLetter": null,
+      "Size": 536870912,
+      "Type": "Recovery",
+      "IsSystem": false,
+      "IsBoot": false,
+      "IsActive": false,
+      "UniqueId": "disk0p2"
+    },
+    {
+      "DiskNumber": 0,
+      "PartitionNumber": 3,
+      "Guid": "{9F4DAADF-71A7-48F1-9B57-D6CDDDB3F41F}",
+      "DriveLetter": "C",
+      "Size": 499046703104,
+      "Type": "Basic",
+      "IsSystem": false,
+      "IsBoot": true,
+      "IsActive": false,
+      "UniqueId": "disk0p3"
+    },
+    {
+      "DiskNumber": 1,
+      "PartitionNumber": 1,
+      "Guid": null,
+      "DriveLetter": "E",
+      "Size": 32009879552,
+      "Type": "Basic",
+      "IsSystem": false,
+      "IsBoot": false,
+      "IsActive": true,
+      "UniqueId": "disk1p1"
+    }
+  ],
+  "volumes": [
+    {
+      "DriveLetter": "C",
+      "FileSystem": "NTFS",
+      "FileSystemLabel": "Windows",
+      "Size": 499046703104,
+      "SizeRemaining": 350123456789,
+      "UniqueId": "\\\\?\\Volume{9f4daadf-71a7-48f1-9b57-d6cdddb3f41f}\\"
+    },
+    {
+      "DriveLetter": "E",
+      "FileSystem": "FAT32",
+      "FileSystemLabel": "USB_DRIVE",
+      "Size": 32009879552,
+      "SizeRemaining": 28000000000,
+      "UniqueId": "\\\\?\\Volume{usb-fixture}\\"
+    }
+  ]
+}
