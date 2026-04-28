@@ -58,7 +58,7 @@ def _assert_linux_host() -> None:
 
 def _assert_root() -> None:
     """Raise SystemExit(2) if not running as root."""
-    if os.geteuid() != 0:
+    if os.geteuid() != 0:  # type: ignore[attr-defined,unused-ignore]
         import typer
         typer.echo(
             "ERROR: boot repair requires root privileges. Run with sudo.",

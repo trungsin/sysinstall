@@ -199,11 +199,11 @@ def _acquire_lock(fh: Any) -> None:
         # Lock the first byte of the file (msvcrt.locking requires a size).
         try:
             fh.seek(0)
-            msvcrt.locking(fh.fileno(), msvcrt.LK_NBLCK, 1)  # type: ignore[attr-defined]
+            msvcrt.locking(fh.fileno(), msvcrt.LK_NBLCK, 1)  # type: ignore[attr-defined,unused-ignore]
         except OSError:
             # Blocking lock — retry with LK_LOCK.
             fh.seek(0)
-            msvcrt.locking(fh.fileno(), msvcrt.LK_LOCK, 1)  # type: ignore[attr-defined]
+            msvcrt.locking(fh.fileno(), msvcrt.LK_LOCK, 1)  # type: ignore[attr-defined,unused-ignore]
     else:
         import fcntl
         fcntl.flock(fh.fileno(), fcntl.LOCK_EX)
@@ -215,7 +215,7 @@ def _release_lock(fh: Any) -> None:
         import msvcrt
         try:
             fh.seek(0)
-            msvcrt.locking(fh.fileno(), msvcrt.LK_UNLCK, 1)  # type: ignore[attr-defined]
+            msvcrt.locking(fh.fileno(), msvcrt.LK_UNLCK, 1)  # type: ignore[attr-defined,unused-ignore]
         except OSError:
             pass
     else:
