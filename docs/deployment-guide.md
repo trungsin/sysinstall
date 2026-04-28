@@ -69,7 +69,7 @@ GitHub Actions will:
 3. Upload binaries as artifacts
 4. Create GitHub Release with artifacts attached
 
-Check release page: https://github.com/USER/sysinstall/releases/tag/v0.0.2
+Check release page: https://github.com/trungsin/sysinstall/releases/tag/v0.0.2
 
 ## CI/CD Workflow (`.github/workflows/release.yml`)
 

@@ -1,7 +1,7 @@
 # Installing sysinstall on Windows
 
 ## Download Binary
-1. Go to [GitHub Releases](https://github.com/USER/sysinstall/releases)
+1. Go to [GitHub Releases](https://github.com/trungsin/sysinstall/releases)
 2. Download `sysinstall-windows-x64.exe` (latest version)
 3. Save to a convenient location (e.g., `C:\Users\<user>\Downloads\`)
 
@@ -132,5 +132,5 @@ Network issue during Ventoy binary download.
 - Check `troubleshooting.md` for additional error fixes
 
 ## Support
-- Issues: [GitHub Issues](https://github.com/USER/sysinstall/issues)
+- Issues: [GitHub Issues](https://github.com/trungsin/sysinstall/issues)
 - Docs: [Full Documentation](../README.md)

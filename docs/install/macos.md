@@ -8,7 +8,7 @@
 sysinstall can still list disks, partition for dual-boot, and repair GRUB on macOS; USB creation is the only blocked operation.
 
 ## Download Binary
-1. Go to [GitHub Releases](https://github.com/USER/sysinstall/releases)
+1. Go to [GitHub Releases](https://github.com/trungsin/sysinstall/releases)
 2. Download `sysinstall-macos-arm64` (M1/M2/M3/M4 Macs)
 3. Save to a convenient location (e.g., `~/Downloads/`)
 
@@ -215,5 +215,5 @@ Expected behavior. Ventoy upstream has no macOS support.
 - **Intel Macs:** Not supported in MVP; use Linux or Windows binary on Intel hardware
 
 ## Support
-- Issues: [GitHub Issues](https://github.com/USER/sysinstall/issues)
+- Issues: [GitHub Issues](https://github.com/trungsin/sysinstall/issues)
 - Docs: [Full Documentation](../README.md)

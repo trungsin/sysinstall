@@ -30,9 +30,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/USER/sysinstall"
-Repository = "https://github.com/USER/sysinstall"
-Issues = "https://github.com/USER/sysinstall/issues"
+Homepage = "https://github.com/trungsin/sysinstall"
+Repository = "https://github.com/trungsin/sysinstall"
+Issues = "https://github.com/trungsin/sysinstall/issues"
 
 [project.scripts]
 sysinstall = "sysinstall.cli:app"

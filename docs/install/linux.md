@@ -1,7 +1,7 @@
 # Installing sysinstall on Linux
 
 ## Download Binary
-1. Go to [GitHub Releases](https://github.com/USER/sysinstall/releases)
+1. Go to [GitHub Releases](https://github.com/trungsin/sysinstall/releases)
 2. Download `sysinstall-linux-x64` (latest version)
 3. Download `sha256sum.txt` alongside
 4. Save to a convenient location (e.g., `~/Downloads/`)
@@ -204,5 +204,5 @@ sysinstall builds on Ubuntu 22.04 and should work on:
 - Check `troubleshooting.md` for additional error fixes
 
 ## Support
-- Issues: [GitHub Issues](https://github.com/USER/sysinstall/issues)
+- Issues: [GitHub Issues](https://github.com/trungsin/sysinstall/issues)
 - Docs: [Full Documentation](../README.md)

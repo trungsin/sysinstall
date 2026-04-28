@@ -2,8 +2,8 @@
 
 Cross-platform CLI for creating multi-boot USB drives (Ventoy) and safely setting up Windows + Ubuntu dual-boot systems.
 
-[![CI](https://github.com/USER/sysinstall/actions/workflows/ci.yml/badge.svg)](https://github.com/USER/sysinstall/actions/workflows/ci.yml)
-[![Coverage](https://img.shields.io/badge/coverage-92%25-brightgreen)](https://github.com/USER/sysinstall)
+[![CI](https://github.com/trungsin/sysinstall/actions/workflows/ci.yml/badge.svg)](https://github.com/trungsin/sysinstall/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-92%25-brightgreen)](https://github.com/trungsin/sysinstall)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Quick Install
@@ -11,14 +11,14 @@ Cross-platform CLI for creating multi-boot USB drives (Ventoy) and safely settin
 ### Windows
 ```powershell
 # Download from GitHub Releases
-Invoke-WebRequest -Uri "https://github.com/USER/sysinstall/releases/download/v0.0.1/sysinstall-windows-x64.exe" -OutFile sysinstall.exe
+Invoke-WebRequest -Uri "https://github.com/trungsin/sysinstall/releases/download/v0.0.1/sysinstall-windows-x64.exe" -OutFile sysinstall.exe
 .\sysinstall.exe --version
 ```
 
 ### macOS (Apple Silicon)
 ```bash
 # Download from GitHub Releases
-curl -L "https://github.com/USER/sysinstall/releases/download/v0.0.1/sysinstall-macos-arm64" -o sysinstall
+curl -L "https://github.com/trungsin/sysinstall/releases/download/v0.0.1/sysinstall-macos-arm64" -o sysinstall
 chmod +x sysinstall
 xattr -d com.apple.quarantine sysinstall
 ./sysinstall --version
@@ -27,7 +27,7 @@ xattr -d com.apple.quarantine sysinstall
 ### Linux
 ```bash
 # Download from GitHub Releases
-wget https://github.com/USER/sysinstall/releases/download/v0.0.1/sysinstall-linux-x64
+wget https://github.com/trungsin/sysinstall/releases/download/v0.0.1/sysinstall-linux-x64
 chmod +x sysinstall-linux-x64
 ./sysinstall-linux-x64 --version
 ```
@@ -139,8 +139,8 @@ See `docs/development-roadmap.md` for detailed backlog.
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/USER/sysinstall/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/USER/sysinstall/discussions)
+- **Issues:** [GitHub Issues](https://github.com/trungsin/sysinstall/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/trungsin/sysinstall/discussions)
 - **Docs:** Full documentation in `docs/` directory
 
 ## License
